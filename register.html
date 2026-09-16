@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tech Orbit Registration</title>
+    <style>
+        body { font-family: Arial; background: #f0f0f0; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; }
+        h1 { color: #1F3864; text-align: center; }
+        input, select { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #2E6FBE; border-radius: 5px; }
+        button { width: 100%; padding: 12px; background: #FF8C00; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; }
+        button:hover { background: #E36C09; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>TECH ORBIT REGISTRATION</h1>
+        <form id="form">
+            <input type="text" placeholder="First Name" id="fname" required>
+            <input type="text" placeholder="Last Name" id="lname" required>
+            <input type="email" placeholder="Email" id="email" required>
+            <input type="tel" placeholder="Phone (10 digits)" id="phone" pattern="[0-9]{10}" required>
+            <input type="text" placeholder="Roll Number" id="roll" required>
+            <select id="year" required>
+                <option value="">Select Year</option>
+                <option value="2nd Year">2nd Year</option>
+                <option value="3rd Year">3rd Year</option>
+                <option value="Final Year">Final Year</option>
+            </select>
+            <select id="dept" required>
+                <option value="">Select Department</option>
+                <option value="AI&DS">AI & Data Science</option>
+                <option value="CSE">Computer Science</option>
+                <option value="IT">IT</option>
+            </select>
+            <button type="submit"> REGISTER NOW</button>
+        </form>
+    </div>
+
+    <script>
+        alert("we are happy to register you to the TECH ORBIT")
+        document.getElementById('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Save to browser storage
+            let data = {
+                timestamp: new Date().toLocaleString(),
+                firstName: document.getElementById('fname').value,
+                lastName: document.getElementById('lname').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                rollNo: document.getElementById('roll').value,
+                year: document.getElementById('year').value,
+                department: document.getElementById('dept').value
+            };
+            
+            let registrations = JSON.parse(localStorage.getItem('registrations')) || [];
+            registrations.push(data);
+            localStorage.setItem('registrations', JSON.stringify(registrations));
+            
+            alert('Registration Successful!\nThank you for joining Tech Orbit!');
+            this.reset();
+        });
+    
+    </script>
+</body>
+</html>
